@@ -1,0 +1,21 @@
+services:
+  next-app:
+    # O Docker Compose vai procurqar o Dockerfile no diretório atual
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Mapeia a porta 3000 do contêiner para a porta 3000 da sua máquina
+    ports:
+      - "3000:3000"
+      
+    # Mapeamento de Volumes (Essencial para o desenvolvimento)
+    volumes:
+      # 1. Mapeia o código fonte local (diretório atual) para /app no contêiner
+      - .:/app
+      
+      # 2. Volume anônimo para o node_modules:
+      - /app/node_modules
+      
+    # Reinicia se o serviço falhar
+    restart: always
